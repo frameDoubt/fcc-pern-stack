@@ -1,19 +1,9 @@
 require('dotenv').config();
-
 const express = require("express");
-
+const morgan = require("morgan");
 const app = express();
 
-
-// get a restaurant
-app.get("/api/v1/restaurants/:restaurantid", (req, res) => {
-    console.log(req.params);
-});
-
-// create a restaurant
-app.post("/api/v1/restaurants", (req, res) => {
-    console.log(req);
-});
+app.use(express.json());
 
 // get all restaurants
 app.get("/api/v1/restaurants", (req, res) => {
@@ -23,6 +13,16 @@ app.get("/api/v1/restaurants", (req, res) => {
             restaurant: ["McDonalds", "Wendy's"]
         }
     });
+});
+
+// get a restaurant
+app.get("/api/v1/restaurants/:restaurantid", (req, res) => {
+    console.log(req.params);
+});
+
+// create a restaurant
+app.post("/api/v1/restaurants", (req, res) => {
+    console.log(req);
 });
 
 const PORT = process.env.PORT || 3001;
